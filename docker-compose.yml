@@ -1,0 +1,19 @@
+version: '3'
+services:
+    webclient:
+        build: .
+        user: ${UID}
+        environment:
+            - "REACT_APP_ENVIRONMENT=development"
+            - "REACT_APP_API_BASE_URL=https://localhost/api/v1/"
+            - "REACT_APP_MODULES_BASE_URL=https://localhost/modules/"
+            - "PUBLIC_URL=https://localhost/redux/"
+        volumes:
+            - ./:/dagger
+            - webpack-build:/dagger/build
+            - node-modules:/dagger/node_modules
+        ports:
+            - "3000:3000"
+volumes:
+    webpack-build:
+    node-modules:
